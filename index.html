@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day, Faye!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #ffe6f0;
+            color: #fd4b6f;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Flying hearts animation */
+        @keyframes fly {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 2em;
+            animation: fly 4s linear infinite;
+        }
+
+        /* Love Question Section */
+        .section1{
+            padding: 50px 20px;
+            background-color: #fef9f9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gif img {
+            width: 250px;
+            height: auto;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .yes-button, .no-button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            cursor: pointer;
+            border-radius: 10px;
+            border: none;
+        }
+
+        .yes-button {
+            background: #ff6699;
+            color: white;
+        }
+
+        .no-button {
+            background: #ff3366;
+            color: white;
+            position: absolute;
+        }
+
+        .love-message {
+            font-size: 2em;
+            margin-top: 20px;
+            display: none;
+            color: #ff3366;
+        }
+        .section2{
+            padding: 50px 20px;
+            background-color: #f5cdcd;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .gif img {
+            width: 250px;
+            height: auto;
+        }
+        .section3{
+            padding: 50px 20px;
+            background-color: #f6eded;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Love Meter */
+        .love-meter {
+            width: 300px;
+            height: 30px;
+            background: #ff5148;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 20px;
+           
+        }
+
+        .meter-fill {
+            height: 100%;
+            width: 0%;
+            background: red;
+            transition: width 0.2s;
+           
+        }
+
+        .tap-button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: #ff3366;
+            color: white;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .section4{
+            padding: 50px 20px;
+            background-color: #f6eded;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .song-section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Flying Hearts -->
+    <script>
+        for (let i = 0; i < 20; i++) {
+            let heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "❤";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+            document.body.appendChild(heart);
+        }
+    </script>
+
+    <!-- Section 1: Love Question -->
+    <div class="section1">
+        <h2>Do you love me, Faye? ❤</h2>
+        <div class="gif">
+            <img id="love-gif" src="https://media.tenor.com/rxlKfrdNbLMAAAAi/milk-and-mocha.gif" alt="Cute Mochi GIF">
+        </div>
+        <div class="button-container" id="button-container">
+            <button class="yes-button" onclick="sayYes()">Yes</button>
+            <button class="no-button" onclick="moveNo()">No</button>
+        </div>
+        <div class="love-message" id="love-message">I love you too ❤</div>
+    </div>
+
+    <!-- Section 2: Cute Message -->
+    <div class="section2">
+        
+        <h2>I Love You, Faye! ❤</h2>
+        <p>You are the most special person in my life, and I'm so lucky to have you.<br>
+            You’re not just someone I love—you’re someone I admire, someone I respect, someone I never want to lose. Even in the distance, you feel like home to me.</p>
+
+        <div class="gif">
+             <img src="https://media.tenor.com/ggu0Nr-ndl8AAAAj/milk-and-mocha.gif" alt="Cute GIF">
+             </div>
+    </div>
+
+
+    <!-- Section 3: Love Meter -->
+    <div class="section3">
+        
+        <h2>Love Meter 💖</h2>
+        <div class="love-meter">
+            <div class="meter-fill" id="meter-fill"></div>
+        </div>
+        <p id="love-score">Love Score: 0%</p>
+        <button class="tap-button" onclick="startGame()">Tap to Get Song</button>
+    </div>
+      <!-- Section 5: Song Player (Appears After 100%) -->
+    <div class="section song-section" id="song-section">
+        <h2>The Melody Of My Bad Singing Voice, Just For You Faye 🎶</h2>
+        <audio id="love-song" controls>
+            <source src="https://www.dropbox.com/scl/fi/ekldkumlx5dyjxwge72h6/chit.aac?rlkey=jiob2go4dpj5ihzznrp5yha4v&st=2sgc0nij&raw=1" type="audio/mp3">
+            
+
+        </audio>
+        <div class="duration" id="songDuration"></div>
+        <button onclick="playSong()">Play</button>
+        <button onclick="pauseSong()">Pause</button>
+    </div>
+
+    <!-- Section 4: Love Letter -->
+    <div class="section4">
+        <script>
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.className = "heart";
+                heart.innerHTML = "❤";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+                document.body.appendChild(heart);
+            }
+        </script>
+        <h2>My Love Letter to You ❤</h2>
+        <p>Faye, you are the best thing that has ever happened to me. Every moment with you is a blessing, and I can't wait to spend forever with you. I love you endlessly! 💕<br>
+            I’ve been thinking about this, and honestly, I don’t think there’s a better feeling than having you in my life Faye. You’re this incredible mix of sweetness, strength, and beauty. <br>
+
+ Every time we talk,
+And as much as I try to convince myself that I’m not worthy of someone as incredible as you,<br> I realize that maybe we’re just meant to experience this love in our own way — growing stronger, even from afar.<br> Every day that passes, my heart grows fonder of you, and though it’s not easy, I know that the love we’re building is worth every moment of patience. <br>I’m here, waiting for the time when we can finally be in each other’s arms, but until then Faye, my love for you will only continue to grow.<br><br>
+
+You remember your Faye RIZZ korean version?<br>, Honestly, I never imagined that a simple "yeoboseyo" could make my heart race, here I was smiling like a fool haha.😚 <br>
+
+There’s something so special about you Faye, something that lights up my world every time we talk. <br>I don’t even know how to explain it, but all I know is I’m the lucky guy who gets to be your "Yeoboseyo" Without the seyo ofcourse, haha<br><br>
+
+I know I might not be the best-looking guy (I mean, come on, the beard still needs some work right?)😓 <br>
+
+ I I’m not perfect — far from it, actually — but with you Faye, I feel like I’m  the best version of myself.<br> And even when I get shy or nervous, you make me feel like it’s okay to be me.<br> You’ve given me so much confidence <br>
+ I’m so grateful for every little moment we share, and I can’t wait for the day I can see you face-to-face, hold your hand, and tell you all this in person.<br> But until then, I’ll keep sending you all my love,
+from wherever I am, and hopefully, it’s enough to make your heart smile like you do for me .. <br><br>
+
+I might not be there on this Valentine day, but its alright,<br> We still have upcoming hundred's of Valentine day, Right? <br>     
+                                                      BE POSITIVE🙎‍♂️ <br>
+                                          Oh Wow That's Your Line, And Iam Using It<br>
+                       You’ve Turned This Depressed Negative Guy Into Such Positive And Optimist, Thanks For That 💕<br>
+
+I love you very much<br>
+Faye<br>
+
+
+Yours, now and always( even if I’m a bit of a mess sometimes)<br><br>
+  
+~Tress
+        </p>
+    </div>
+
+  
+
+    <script>
+        function moveNo() {
+            let btn = document.querySelector(".no-button");
+            btn.style.top = Math.random() * 80 + "vh";
+            btn.style.left = Math.random() * 80 + "vw";
+        }
+
+        function sayYes() {
+            document.getElementById("love-gif").src = "https://media.tenor.com/d2nnuVMvPbcAAAAi/milk-and-mocha-milk-and-mocha-bear.gif";
+            document.getElementById("button-container").style.display = "none";
+            document.getElementById("love-message").style.display = "block";
+        }
+
+        let loveScore = 0;
+        function startGame() {
+            loveScore = 0;
+            let meter = document.getElementById("meter-fill");
+            let scoreText = document.getElementById("love-score");
+
+            let interval = setInterval(() => {
+                loveScore += 10;
+                meter.style.width = loveScore + "%";
+                scoreText.innerText = 'Love Score: 100%';
+
+                if (loveScore >= 100) {
+                    clearInterval(interval);
+                    document.getElementById("song-section").style.display = "block";
+                }
+            }, 500);
+        }
+
+        function playSong() { document.getElementById("love-song").play(); }
+        function pauseSong() { document.getElementById("love-song").pause(); }
+   
+    
+    const audio = document.getElementById('loveSong');
+        const songDuration = document.getElementById('songDuration');
+
+        audio.addEventListener('loadedmetadata', function() {
+            const duration = audio.duration;
+            const minutes = Math.floor(duration / 60);
+            const seconds = Math.floor(duration % 60);
+            songDuration.innerText = Duration (minutes)+(seconds < 10 ? '0' : '')+{seconds};
+    });
+</script>
+
+
+</body>
+</html>
